@@ -15,7 +15,7 @@ Once running, access the services:
 Interactive Analytics Dashboard: http://localhost:3000
 REST API Server: http://localhost:8080
 🎨 System Architecture
-Mermaid diagram
+
 The system consists of three modular services:
 
 cv-pipeline (Python/OpenCV): Performs YOLOv8 person detection and centroid tracking across five distinct camera angles to map shopper coordinates.
@@ -27,11 +27,15 @@ Dual-Mode Inference Engine: Checks input video metadata. For the standard Purpll
 Session-Based Funnel Analytics: Groups shopper activities by persistent track IDs to map physical journeys accurately (Entered -> Browsed -> Counter -> Purchased) without double counting.
 Interactive Spatial Engagement Map: An interactive SVG layout plan of the store. Shelves are dynamically color-coded as a heatmap based on visit frequency, with hover stats showing counts and average dwell times.
 Active Operational Anomalies: Detects unauthorized entries into the restricted backroom, checkout queue drop-offs, and group entry surges.
+
+
 📈 API Endpoints Summary
 /metrics (or /Metrics): Returns general metrics including total footfall, conversion rate, total sales value, brand engagement stats (counts/dwell times), and hourly busy periods.
 /funnel: Returns sessionized count of unique customers progressing through each stage of the store funnel.
 /events: Returns a queryable chronological list of all tracking events.
 /anomalies: Returns a list of detected store operational warnings.
+
+
 📂 Project Structure
 text
 
@@ -45,6 +49,3 @@ text
 ├── CHOICES.md             # Model selection rationales & design trade-offs
 └── docker-compose.yml     # Container orchestration configuration
 
-
-You can now push your commits to your remote GitHub repository! Let me know if you need anything else to submit your project.
-1:32 PM
