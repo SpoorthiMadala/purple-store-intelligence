@@ -1,0 +1,18 @@
+# CCTV video files (exceeds GitHub size limits)
+CCTV Footage/
+CCTV Footage-*.zip
+
+# Shared runtime data
+data/events.json
+
+# Node dependencies
+**/node_modules/
+**/dist/
+**/build/
+
+# Local configuration & cache
+.env
+.idea/
+.vscode/
+*.log
+.DS_Store

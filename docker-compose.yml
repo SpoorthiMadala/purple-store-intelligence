@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  cv-pipeline:
+    build: ./cv-pipeline
+    container_name: store-cv-pipeline
+    volumes:
+      - ./CCTV Footage:/app/CCTV Footage:ro
+      - ./data:/app/data
+    environment:
+      - INPUT_DIR=/app/CCTV Footage
+      - OUTPUT_DIR=/app/data
+    restart: on-failure
+
+  api-server:
+    build: ./api-server
+    container_name: store-api-server
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
+      - ./Brigade_Bangalore_10_April_26 (1)bc6219c.csv:/app/sales.csv:ro
+    environment:
+      - PORT=8080
+      - DATA_DIR=/app/data
+      - SALES_CSV=/app/sales.csv
+    depends_on:
+      - cv-pipeline
+    restart: always
+
+  frontend:
+    build: ./frontend
+    container_name: store-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api-server
+    restart: always
