@@ -18,13 +18,18 @@ export default function App() {
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [cameraFilter, setCameraFilter] = useState('');
 
+  const API_BASE = import.meta.env.VITE_API_URL || 
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:8080'
+      : '');
+
   const fetchData = async () => {
     try {
       const [resMetrics, resFunnel, resEvents, resAnomalies] = await Promise.all([
-        fetch('/api/metrics'),
-        fetch('/api/funnel'),
-        fetch('/api/events?limit=50'),
-        fetch('/api/anomalies')
+        fetch(`${API_BASE}/metrics`),
+        fetch(`${API_BASE}/funnel`),
+        fetch(`${API_BASE}/events?limit=50`),
+        fetch(`${API_BASE}/anomalies`)
       ]);
 
       const dataMetrics = await resMetrics.json();
